@@ -6,5 +6,3 @@ There are 2 programs.
     
    2. Smile Recognition.
     This will recognise your smile on your face.
-
-Note: Till Now It is only for those who don't wear glasses.
