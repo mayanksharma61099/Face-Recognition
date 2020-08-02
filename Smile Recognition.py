@@ -9,6 +9,7 @@ import cv2
 face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml')
 smile_cascade = cv2.CascadeClassifier('haarcascade_smile.xml')
+specs_cascade = cv2.CascadeClassifier('haarcascade_eye_tree_eyeglasses.xml')
 
 #Defining a function that will do the detection
 def detect(gray, frame):
@@ -20,7 +21,10 @@ def detect(gray, frame):
         eyes = eye_cascade.detectMultiScale(roi_gray, 1.1, 1)
         for (ex, ey, ew, eh) in eyes:
             cv2.rectangle(roi_color, (ex, ey), (ex + ew, ey + eh), (0,255,0), 2)
-        smile = smile_cascade.detectMultiScale(roi_gray, 1.1, 22)
+        specs = specs_cascade.detectMultiScale(roi_gray, 1.1, 50)
+        for (sx, sy, sw, sh) in specs:
+            cv2.rectangle(roi_color, (sx, sy), (sx + sw, sy + sh), (0,255,0), 2)
+        smile = smile_cascade.detectMultiScale(roi_gray, 1.1, 20)
         for (sx, sy, sw, sh) in smile:
             cv2.rectangle(roi_color, (sx, sy), (sx + sw, sy + sh), (0,0,255), 2)
             print('You\'re Smiling')
